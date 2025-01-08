@@ -696,94 +696,76 @@ Connect
 Skills
 ===============
 */
-/* General Styles */
+/* Skill Section Styling */
 #skills {
-    padding: 50px 0;
-    background-color: var(--clr-grey-10);
-    text-align: center;
-    
-}
-
-.skill-title {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    padding-top: 20px;
-    text-transform: uppercase;
-    position: relative; /* Added for pseudo-element alignment */
-
-}
-
-.skill-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background-color: var(--clr-primary-5);
-    
+  padding: 2rem 0;
+  text-align: center;
 }
 
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .skill {
-    background-color: white;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.skill:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background: var(--clr-white);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+  flex: 1 1 calc(33.333% - 2rem); /* Adjust for 3 columns on larger screens */
+  max-width: 300px; /* Limit the width of each skill box */
+  word-wrap: break-word; /* Ensure text wraps within the container */
+  overflow-wrap: break-word; /* Alternative for better browser support */
+  transition: var(--transition); /* Add transition effect */
 }
 
 .skill h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    text-transform: capitalize;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
 }
 
-.skill .para {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.6;
+.skill p.para {
+  font-size: 0.9rem;
+  color: var(--clr-grey-5);
+  margin: 0;
 }
 
-/* Responsive Adjustments */
+/* Hover Effect for Skill Box */
+.skill:hover {
+  background: var(--clr-primary-5); /* Change background color on hover */
+  color: var(--clr-white); /* Change text color on hover */
+  box-shadow: var(--dark-shadow); /* Add a darker shadow on hover */
+  transform: translateY(-5px); /* Move the box upward slightly */
+}
+
+.skill:hover p.para {
+  color: var(--clr-white); /* Ensure paragraph text color changes on hover */
+}
+
+/* Media Queries for Mobile Responsiveness */
 @media screen and (max-width: 768px) {
-    .skills-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-    }
-
-    .skill {
-        padding: 20px;
-    }
-
-    .skill-title {
-        font-size: 2rem;
-    }
+  .skill {
+    flex: 1 1 calc(50% - 1rem); /* Adjust for 2 columns on medium screens */
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .skills-container {
-        grid-template-columns: 1fr;
-    }
+  .skill {
+    flex: 1 1 100%; /* Single column on small screens */
+    max-width: 100%;
+  }
 
-    .skill-title {
-        font-size: 1.8rem;
-    }
+  .skill h3 {
+    font-size: 1.1rem; /* Adjust heading size for smaller screens */
+  }
+
+  .skill p.para {
+    font-size: 0.85rem; /* Adjust paragraph size for smaller screens */
+  }
 }
 
 /*
