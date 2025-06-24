@@ -433,9 +433,13 @@ About
   margin-left: 0;
 }
 .about-center {
-  display: grid;
-  gap: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
+
 .about-img {
   justify-self: center;
 }
@@ -945,4 +949,164 @@ Products Page
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 3rem 1rem;
+}
+
+
+
+:root {
+  --clr-primary-5: #eab63d;  /* Mustard yellow from the button */
+}
+
+/* --- About Face Container --- */
+.about-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-bottom: -90px; /* Pull face up closer to title */
+}
+
+.face {
+  width: 320px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+/* --- Eyes and Pupils --- */
+.eyes {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.eye {
+  width: 70px;
+  height: 70px;
+  border: 3px solid black;
+  border-radius: 50%;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.pupil {
+  width: 24px;
+  height: 24px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: blink 6s infinite;
+  transition: transform 0.2s ease;
+}
+
+/* Alternate blink timing for realism */
+.eye:nth-child(1) .pupil {
+  animation: blink 6s infinite;
+}
+.eye:nth-child(2) .pupil {
+  animation: blink 6s infinite;
+}
+
+/* --- Blinking Animation --- */
+@keyframes blink {
+  0%, 90%, 100% {
+    height: 24px;
+  }
+  92%, 98% {
+    height: 2px;
+  }
+}
+
+/* --- Mouth --- */
+.mouth {
+  width: 80px;
+  height: 10px;
+  background: black;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.mouth.smile {
+  width: 80px;
+  height: 24px;
+  background: none;
+  border-bottom: 8px solid var(--clr-primary-5);
+  border-radius: 0 0 100px 100px;
+}
+
+/* --- Smile on hover near the button --- */
+a.btn:hover ~ .face .mouth {
+  border-radius: 50%;
+  height: 14px;
+  transform: rotate(180deg);
+}
+
+/* --- Responsive for Mobile --- */
+@media screen and (max-width: 768px) {
+  .about-center {
+    flex-direction: column;
+  }
+
+  .face {
+    width: 160px;
+    height: 160px;
+  }
+
+  .eyes {
+    width: 100px;
+    margin-bottom: 6px;
+  }
+
+  .eye {
+    width: 45px;
+    height: 45px;
+    border: 2px solid black;
+  }
+
+  .pupil {
+    width: 12px;
+    height: 12px;
+  }
+
+  .mouth {
+    width: 36px;
+    height: 5px;
+    margin-top: 12px;
+  }
+
+  .mouth.smile {
+    width: 36px;
+    height: 12px;
+    border-bottom: 4px solid var(--clr-primary-5);
+    border-radius: 0 0 50px 50px;
+  }
+}
+
+
+/* --- Cleanup: No outlines or shadows --- */
+.about-img, .face {
+  border: none !important;
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.face::before,
+.face::after,
+.about-img::before,
+.about-img::after {
+  content: none !important;
+  display: none !important;
 }
